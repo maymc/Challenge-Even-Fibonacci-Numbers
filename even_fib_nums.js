@@ -10,25 +10,38 @@ function _sumFibs(maxFibValue) {
   var sum = 0;
 
   // do your work here
-  let evenNums = [2];
+  //let evenNums = [2];
   let fibNums = [1, 2];
 
-  while (fibNums[fibNums.length - 1] !== maxFibValue) {
+  for (let i = 0; fibNums[fibNums.length - 1] !== maxFibValue; i++) {
+    let fib = fibNums[i] + fibNums[i + 1];
+    console.log("fib:", fib);
+    fibNums.push(fib);
+    console.log("Check fibNums:", fibNums);
+    // console.log("Check last element:", fibNums[fibNums.length - 1]);
+    // if (fib % 2 === 0) {
+    //   evenNums.push(fib);
+    //   console.log("Check evenNums:", evenNums);
+    // }
+  }
+  // for (j = 0; j < evenNums.length; j++) {
+  //   sum += evenNums[j];
+  // }
 
-    for (let i = 0; fibNums[fibNums.length - 1] !== maxFibValue; i++) {
-      let fib = fibNums[i] + fibNums[i + 1];
-      fibNums.push(fib);
-      console.log("Check fibNums:", fibNums);
-      console.log("Check last element:", fibNums[fibNums.length - 1]);
-      if (fib % 2 === 0) {
-        evenNums.push(fib);
-        console.log("Check evenNums:", evenNums);
-      }
-    }
+
+  getEvens = element => {
+    return !(element % 2);
   }
-  for (j = 0; j < evenNums.length; j++) {
-    sum += evenNums[j];
+  let evenNums = fibNums.filter(getEvens);
+  console.log("\nevenNum arr: ", evenNums);
+
+  sumEvens = (prevValue, currentValue) => {
+    return prevValue + currentValue;
   }
+
+  sum = evenNums.reduce(sumEvens);
+  console.log("Sum: ", sum);
+
   return sum;
 }
 
